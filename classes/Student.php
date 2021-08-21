@@ -10,7 +10,7 @@ class Student
     private $student_curriculum;
 
     /**
-     * Student constructor.
+     * Student constructor
      * @param $student_id
      * @param $student_name
      * @param $student_surname
