@@ -185,3 +185,83 @@ else if ($actionInput == ACTION_SEARCH) {
 else{
     echo "Hi! Please provide an action.";
 }
+
+function isSearchFound($searchCriteria, $searchKey, $student){
+
+    echo $searchKey . "\n";
+    if ($searchCriteria = "name"){
+        if ($searchKey == $student->getStudentName()){
+            return true;
+        }
+    }
+    else if ($searchCriteria = "surname"){
+        if ($searchKey == $student->getStudentSurname()){
+            return true;
+        }
+    }
+    else if ($searchCriteria = "id"){
+        if ($searchKey == $student->getStudentId()){
+            return true;
+        }
+    }
+    else if ($searchCriteria = "curriculum"){
+        if ($searchKey == $student->getStudentCurriculum()){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+//Extracts a search value from the search criteria.
+function getSearchCriteria($searchValue, $searchCriteria){
+    echo  $searchValue . "\n";
+    echo  $searchCriteria . "\n";
+    if (strpos($searchValue,$searchCriteria) >= 0){
+        return str_replace($searchCriteria,"", $searchValue);
+    }
+}
+
+/**	Fetches all DIR then inner files then json files
+* and extract JSON into Student class.
+*/
+function getAll(){
+    $dirArr = array();
+
+    $finalDir = getCurrentDirectory() . "\\" . PROJECT_DIR;
+    if (!file_exists($finalDir)){
+        return null;
+    }
+    else{
+        $dir = new DirectoryIterator($finalDir);
+        foreach ($dir as $fileinfo) {
+            if ($fileinfo->isDir() && !$fileinfo->isDot()) {
+                $recDir = $fileinfo->getPathName();
+
+                $files = scandir($recDir);
+
+                foreach ($files as $file) {
+                    if (strpos($file,".json")){
+                        $file = $recDir . "\\" . $file;
+                        array_push($dirArr,$file);
+                    }
+                }
+            }
+        }
+    }
+
+    $students = array();
+
+    if (sizeof($dirArr) > 0){
+        foreach ($dirArr as $file){
+            array_push($students,jsonToStudent(getFile($file)));
+        }
+    }
+
+    if (sizeof($students) > 0){
+        return $students;
+    }
+    else{
+        return false;
+    }
+}
