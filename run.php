@@ -124,7 +124,61 @@ else if ($actionInput == ACTION_DELETE) {
     }
 }
 
+/**	Search for a student (--action=search):
+* User will be prompted for the search criteria.
+*/
+else if ($actionInput == ACTION_SEARCH) {
+    $students = getAll();
+
+    $searchValue = readInput("Enter search criteria: ",true);
+
+    // $searchValue = "name=Godfrey";
+
+    if (strpos($searchValue,"name=") >= 0){
+        $searchValue = getSearchCriteria($searchValue,"name=");
+        $searchCriteria = "name";
+    }
+    else if (strpos($searchValue,"id=") >= 0){
+        $searchValue = getSearchCriteria($searchValue,"id=");
+        $searchCriteria = "id";
+    }
+    else if (strpos($searchValue,"surname=") >= 0){
+        $searchValue = getSearchCriteria($searchValue,"surname=");
+        $searchCriteria = "surname";
+    }
+    else if (strpos($searchValue,"curriculum=") >= 0){
+        $searchValue = getSearchCriteria($searchValue,"curriculum=");
+        $searchCriteria = "curriculum";
+    }
+
     // Expected search input and output:
     echo "---------------------------------------------------------------------------------------------------\n";
     echo "|     ID     |      Name     |     Surname     |        Age        |          Curriculum          |\n";
     echo "---------------------------------------------------------------------------------------------------\n";
+
+    if (sizeof($students) == 0){
+        echo "No data found!";
+    }
+
+    $isFound = false;
+
+    foreach ($students as $student){
+
+        if (isSearchFound($searchCriteria,$searchValue,$student) || $searchValue == ""){
+            echo "|" . $student->getStudentId()
+                . "\t|\t" . $student->getStudentName()
+                . "\t|\t" . $student->getStudentSurname()
+                . "\t|\t" . $student->getStudentAge()
+                . "\t|\t" . $student->getStudentCurriculum()
+                . "|\n";
+            $isFound = true;
+        }
+    }
+
+    if (!$isFound){
+        echo "|                  No data found!\n";
+    }
+
+    echo "---------------------------------------------------------------------------------------------------";
+    //var_dump($students);
+}
