@@ -8,7 +8,10 @@ php run.php --action=add
 php run.php --action=edit --id=1234567  
 php run.php --action=delete --id=1234567    
 php run.php --action=search 
+
+# Enter search criteria:
 name=Godfrey    
+
 # The application must meet the following requirements:
 
 •	Make use of OOP with the latest standards.      
