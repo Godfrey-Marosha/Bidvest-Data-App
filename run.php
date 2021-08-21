@@ -273,3 +273,22 @@ function jsonToStudent($jsonStr){
 
     return $student;
 }
+
+function delete($student_id){
+    $finalDir    =  getCurrentDirectory() . "\\" . PROJECT_DIR;
+    $studentDir  =  $finalDir . "\\" . substr($student_id,0,2);
+
+    $dir = $studentDir;
+
+    $studentDir .= "\\" . $student_id . ".json";
+
+    $status = false;
+
+    if (!unlink($studentDir)) {
+    }
+    else {
+        $status = true;
+    }
+
+    return $status && rmdir($dir);
+}
