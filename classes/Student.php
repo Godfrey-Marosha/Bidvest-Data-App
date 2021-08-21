@@ -39,41 +39,51 @@ class Student
 
     public function getStudentId()
     {
+        return $this->student_id;
     }
 
-    public function setStudentId()
+    public function setStudentId($student_id)
     {
+        $this->student_id = $student_id;
     }
 
     public function getStudentName()
     {
+        return $this->student_name;
     }
 
-    public function setStudentName()
+    public function setStudentName($student_name)
     {
+        $this->student_name = $student_name;
     }
 
     public function getStudentSurname()
     {
+        return $this->student_surname;
     }
 
-    public function setStudentSurname()
+    public function setStudentSurname($student_surname)
     {
+        $this->student_surname = $student_surname;
     }
 
     public function getStudentAge()
     {
+        return $this->student_age;
     }
 
-    public function setStudentAge()
+    public function setStudentAge($student_age)
     {
+        $this->student_age = $student_age;
     }
 
     public function getStudentCurriculum()
     {
+        return $this->student_curriculum;
     }
 
-    public function setStudentCurriculum()
+    public function setStudentCurriculum($student_curriculum)
     {
+        $this->student_curriculum = $student_curriculum;
     }
 }
