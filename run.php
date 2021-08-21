@@ -182,3 +182,6 @@ else if ($actionInput == ACTION_SEARCH) {
     echo "---------------------------------------------------------------------------------------------------";
     //var_dump($students);
 }
+else{
+    echo "Hi! Please provide an action.";
+}
