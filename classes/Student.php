@@ -17,6 +17,7 @@ class Student
      * @param $student_age
      * @param $student_curriculum
      */
+
     public function __construct($student_id, $student_name, $student_surname, $student_age, $student_curriculum)
     {
         $this->student_id = $student_id;
@@ -24,6 +25,16 @@ class Student
         $this->student_surname = $student_surname;
         $this->student_age = $student_age;
         $this->student_curriculum = $student_curriculum;
+    }
+
+    public function toString(){
+        $array = array("id"         => $this->student_id,
+                       "name"       => $this->student_name,
+                       "surname"    => $this->student_surname,
+                       "age"        => $this->student_age,
+                       "curriculum" => $this->student_curriculum);
+
+        return json_encode($array);
     }
 
     public function getStudentId()
