@@ -340,6 +340,10 @@ function doesStudentExist($filename){
     return false;
 }
 
+/** Student details must be saved in JSON file 
+ * and stored under a subdirectory starting with the first two digits of the student ID:
+ *  (e.g. project_dir/students/12/1234567.json). 
+ */
 function SaveToFile($file_name, $contents){
     $finalDir =  getCurrentDirectory() . "\\" . PROJECT_DIR;
 
