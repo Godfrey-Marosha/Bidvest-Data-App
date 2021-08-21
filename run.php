@@ -72,6 +72,13 @@ else if ($actionInput == ACTION_EDIT){
         $student_age        = readInput("Enter Age[" . $student->getStudentAge() . "]",true);
         $student_curriculum = readInput("Enter Curriculum[" . $student->getStudentCurriculum() . "]",true);
 
+        /*
+        $student_name       = "Godfrey";
+        $student_surname    = "";
+        $student_age        = "";
+        $student_curriculum = "Information Technology";
+        */
+
         if ($student_age != ""){
             if (!isValueADigit($student_age)){
                 echo "The student age must be numeric.";
