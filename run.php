@@ -74,7 +74,7 @@ else if ($actionInput == ACTION_EDIT){
 
         if ($student_age != ""){
             if (!isValueADigit($student_age)){
-                echo "The student age must be numeric!";
+                echo "The student age must be numeric.";
                 exit;
             }
         }
@@ -95,6 +95,31 @@ else if ($actionInput == ACTION_EDIT){
 
         SaveToFile($student->getStudentId(), $student->toString());
 
-        echo "Record updated!";
+        echo "Record updated.";
+    }
+}
+
+/**	Delete an existing student (--action=delete --id=1234567):
+* Student must be identified by student id for editing.
+*/
+else if ($actionInput == ACTION_DELETE) {
+    if ($actionId == "") {
+        echo "Please provide an ID in order to delete.";
+    } else {
+        $student_id = $actionId;
+
+        if (!doesStudentExist($student_id)) {
+            echo "The Student does not exist. Please use a valid ID or add the student first.";
+        }
+        else{
+            $status = delete($student_id);
+
+            if ($status){
+                echo "The student was deleted successfully.";
+            }
+            else{
+                echo "The student could not be deleted.";
+            }
+        }
     }
 }
