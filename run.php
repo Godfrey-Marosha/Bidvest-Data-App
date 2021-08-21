@@ -366,6 +366,9 @@ function getCurrentDirectory() {
     return substr($path,$position);
 }
 
+/** Student IDs must be unique and consist of 7 digits.
+ * Because tudent must be identified by student ID for editing.
+ */
 function isValueADigit($studentId){
     $arr = str_split($studentId, 1);
 
