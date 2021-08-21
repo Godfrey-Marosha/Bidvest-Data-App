@@ -376,3 +376,29 @@ function isValueADigit($studentId){
     }
     return true;
 }
+
+function readInput($promptMessage, $isUpdateMode){
+    $line = "";
+    $counter = 0;
+
+    do{
+        if ($counter > 0){
+            echo $promptMessage . "(" . $counter . ") No input was provided: ";
+        }
+        else{
+            echo $promptMessage . ": ";
+        }
+
+        $handle = fopen ("php://stdin","r");
+        $line = trim(fgets($handle));
+        $counter++;
+
+        if (trim($line) == "" && $isUpdateMode){
+            break;
+        }
+    } while (trim($line) == "");
+
+    fclose($handle);
+
+    return $line;
+}
