@@ -359,3 +359,20 @@ function SaveToFile($file_name, $contents){
 
     return true;
 }
+
+function getCurrentDirectory() {
+    $path = dirname($_SERVER['PHP_SELF']);
+    $position = strrpos($path,'/');
+    return substr($path,$position);
+}
+
+function isValueADigit($studentId){
+    $arr = str_split($studentId, 1);
+
+    foreach ($arr as $arr_digit){
+        if (!is_numeric($arr_digit)){
+            return false;
+        }
+    }
+    return true;
+}
