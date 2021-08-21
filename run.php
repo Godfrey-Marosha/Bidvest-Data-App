@@ -222,7 +222,7 @@ function getSearchCriteria($searchValue, $searchCriteria){
     }
 }
 
-/**	Fetches all DIR then inner files then json files
+/**	Fetches all DIR then inner files then JSON files
 * and extract JSON into Student class.
 */
 function getAll(){
@@ -264,4 +264,12 @@ function getAll(){
     else{
         return false;
     }
+}
+
+function jsonToStudent($jsonStr){
+    $jsonObject = json_decode($jsonStr, true);
+
+    $student = new Student($jsonObject['id'], $jsonObject['name'], $jsonObject['surname'], $jsonObject['age'], $jsonObject['curriculum']);
+
+    return $student;
 }
