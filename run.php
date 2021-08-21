@@ -321,3 +321,41 @@ function get($student_id){
 
     return "";
 }
+
+function add($student){
+    $jsonObject = $student->toString();
+
+    return SaveToFile($student->getStudentId(), $jsonObject);
+}
+
+function doesStudentExist($filename){
+    $finalDir    =  getCurrentDirectory() . "\\" . PROJECT_DIR;
+    $studentDir  =  $finalDir . "\\" . substr($filename,0,2);
+    $studentDir .= "\\" . $filename . ".json";
+
+    if (file_exists($studentDir)){
+        return true;
+    }
+
+    return false;
+}
+
+function SaveToFile($file_name, $contents){
+    $finalDir =  getCurrentDirectory() . "\\" . PROJECT_DIR;
+
+    $studentDir = $finalDir . "\\" . substr($file_name,0,2);
+
+    if (!file_exists($studentDir)){
+        mkdir($studentDir, 0777, true);
+    }
+
+    $studentDir .= "\\" . $file_name . ".json";
+
+    $myfile = fopen($studentDir, "w") or die("Unable to open file.");
+
+    fwrite($myfile, $contents);
+
+    fclose($myfile);
+
+    return true;
+}
