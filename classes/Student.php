@@ -25,4 +25,44 @@ class Student
         $this->student_age = $student_age;
         $this->student_curriculum = $student_curriculum;
     }
+
+    public function getStudentId()
+    {
+    }
+
+    public function setStudentId()
+    {
+    }
+
+    public function getStudentName()
+    {
+    }
+
+    public function setStudentName()
+    {
+    }
+
+    public function getStudentSurname()
+    {
+    }
+
+    public function setStudentSurname()
+    {
+    }
+
+    public function getStudentAge()
+    {
+    }
+
+    public function setStudentAge()
+    {
+    }
+
+    public function getStudentCurriculum()
+    {
+    }
+
+    public function setStudentCurriculum()
+    {
+    }
 }
