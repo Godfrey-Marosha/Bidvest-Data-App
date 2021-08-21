@@ -292,3 +292,32 @@ function delete($student_id){
 
     return $status && rmdir($dir);
 }
+
+function getFile($studentDir){
+
+    if (file_exists($studentDir)){
+        $tempFile = fopen($studentDir, "r") or die("Unable to open file.");
+        $record = fread($tempFile,filesize($studentDir));
+        fclose($tempFile);
+
+        return $record;
+    }
+
+    return "";
+}
+
+function get($student_id){
+    $finalDir    =  getCurrentDirectory() . "\\" . PROJECT_DIR;
+    $studentDir  =  $finalDir . "\\" . substr($student_id,0,2);
+    $studentDir .= "\\" . $student_id . ".json";
+
+    if (file_exists($studentDir)){
+        $tempFile = fopen($studentDir, "r") or die("Unable to open file.");
+        $record = fread($tempFile,filesize($studentDir));
+        fclose($tempFile);
+
+        return $record;
+    }
+
+    return "";
+}
